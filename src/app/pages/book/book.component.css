@@ -1,0 +1,7 @@
+body {
+    height: 80vh;
+    background: linear-gradient(to right, #e1f1dc, #33ff44);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

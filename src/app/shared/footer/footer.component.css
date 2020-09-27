@@ -1,0 +1,6 @@
+footer{background: black;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+color: white;}

@@ -1,0 +1,15 @@
+.navbar{
+    display: flex;
+    
+    justify-content: center;
+    font-size: large;
+
+}
+.nav-link{
+    color: rgb(255, 86, 86);
+
+}
+.nav-link.active{
+    color: rgb(97, 97, 212);
+
+}
