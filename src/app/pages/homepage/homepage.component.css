@@ -1,24 +1,26 @@
+section{ background-color: #f4f6f996;
+  ;}
 .slideshow{
   margin: 0 auto;
-  padding-top: 20vh;
-  height: 700px;
-  background: rgb(197, 195, 195);
+  height: 200px;
   perspective: 1000px;
 }
 .content{
   margin: auto;
-  width: 150px;
+  width: 250px;
   perspective: 1000px;
   position:relative;
-  padding-top: 20px;
-  transform-style: preserve-3d;
+  padding-top: 25px;
+  padding-bottom: 40px;
+
+  transform-style: flat;
 }
 .slider-content{
   width: 100%;
   position:absolute;
   float:right;
-  animation: rotate 15s infinite linear;
-  transform-style: preserve-3d;
+  animation: rotate 35s infinite linear;
+  transform-style:preserve-3d ;
 }
 .slider-content:hover{
   cursor: pointer;
@@ -26,54 +28,51 @@
 }
 
 .slider-content figure{
-  width:120px;
+  width:180px;
   height:100px;
-  border:1px solid #555;
   overflow:hidden;
   position:absolute;
 }
 .slider-content figure:nth-child(1){
-  transform:rotateY(0deg) translateZ(180px);
+  transform:rotateY(0deg) translateZ(350px);
 }
 
 .slider-content figure:nth-child(2){
-  transform:rotateY(40deg) translateZ(180px);
+  transform:rotateY(40deg) translateZ(350px);
 }
 .slider-content figure:nth-child(3){
-  transform:rotateY(80deg) translateZ(180px);
+  transform:rotateY(80deg) translateZ(350px);
 }
 .slider-content figure:nth-child(4){
-  transform:rotateY(120deg) translateZ(180px);
+  transform:rotateY(120deg) translateZ(350px);
 }
 .slider-content figure:nth-child(5){
-  transform:rotateY(160deg) translateZ(180px);
+  transform:rotateY(160deg) translateZ(350px);
 }
 .slider-content figure:nth-child(6){
-  transform:rotateY(200deg) translateZ(180px);
+  transform:rotateY(200deg) translateZ(350px);
 }
 .slider-content figure:nth-child(7){
-  transform:rotateY(240deg) translateZ(180px);
+  transform:rotateY(240deg) translateZ(350px);
 }
 .slider-content figure:nth-child(8){
-  transform:rotateY(280deg) translateZ(180px);
+  transform:rotateY(280deg) translateZ(350px);
 }
 .slider-content figure:nth-child(9){
-  transform:rotateY(320deg) translateZ(180px);
+  transform:rotateY(320deg) translateZ(350px);
 }
 
-.shadow{
-  position: absolute;
-  box-shadow: 0px 0px 0px #000;
- 
-}
+
 .slider-content img{
   image-rendering: auto;
   transition: all 300ms;
   width: 100%;
   height: 100%;
+  transform: scale(0.85);
+
 }
 .slider-content img:hover{
-  transform: scale(1.2);
+  transform: scale(1);
   transition: all 300ms;
  
 }
@@ -102,7 +101,7 @@
   align-items: center;
 }
 .slider {
-  background: rgb(97, 105, 109);
+  background: rgb(129, 128, 128);
   position: fixed;
   top: 0;
   left: 0;
@@ -126,4 +125,156 @@
 .hide span {
   transform: translateY(100%);
   display: inline-block;
+}
+
+/* ---------------- Site Content ----------------*/
+
+ .site-content{
+
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+ .post-content{
+  width: 100%;
+  
+}
+
+ .site-content .post-content > .post-image, .post-title{
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+ .site-content .post-content > .post-image .post-info{
+  background: var(--sky);
+  padding: 1rem;
+  position: absolute;
+  bottom: 0%;
+  left: 20vw;
+  border-radius: 3rem;
+}
+
+ .site-content .post-content > .post-image > div{
+  overflow: hidden;
+}
+
+ .site-content .post-content > .post-image .img{
+  width: 100%;
+  transform: scale(0.85);
+
+  transition: all 1s ease;
+}
+
+ .site-content .post-content > .post-image .img:hover{
+  transform: scale(1);
+}
+
+ .site-content .post-content > .post-image .post-info span{
+  margin: 0 .5rem;
+}
+
+ .post-content .post-title a{
+  font-family: var(--Anton);
+  font-size: 1.5rem;
+}
+
+.site-content .post-content .post-title .post-btn{
+  border-radius: 0;
+  padding: .7rem 1.5rem;
+  background: var(--sky);
+}
+
+.site-content .pagination{
+  justify-content: center;
+  color: var(--text-gray);
+  margin: 4rem 0;
+}
+
+.site-content .pagination a{
+  padding: .6rem .9rem;
+  border-radius: 2rem;
+  margin: 0 .3rem;
+  font-family: var(--Lexend);
+}
+
+.site-content .pagination .pages{
+  background: var(--text-gray);
+  color: var(--white);
+}
+
+/* -------x-------- Site Content --------x-------*/
+
+
+/* --------------- Sidebar ----------------------- */
+
+.site-content > .sidebar .category-list{
+  font-family: var(--Livvic);   
+}
+
+.site-content > .sidebar .category-list .list-items{
+  background: var(--sky);
+  padding: .4rem 1rem;
+  margin: .8rem 0;
+  border-radius: 3rem;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-content > .sidebar .category-list .list-items a{
+  color:  black;
+}
+
+.site-content .sidebar .popular-post .post-content{
+  padding: 1rem 0;
+}
+
+.site-content .sidebar .popular-post h2{
+  padding-top: 8rem;
+}
+
+.site-content .sidebar .popular-post .post-info{
+  padding: .4rem .1rem !important;
+  bottom: 0rem !important;
+  left: 1.5rem !important;
+  border-radius: 0rem !important;
+  background: white !important;
+}
+
+.site-content .sidebar .popular-post .post-title a{
+  font-size: 1rem;
+}
+
+.site-content .sidebar .newsletter{
+  padding-top: 10rem;
+}
+
+.site-content .sidebar .newsletter .form-element{
+  padding: .5rem 2rem;
+}
+
+.site-content .sidebar .newsletter .input-element{
+  width: 80%;
+  height: 1.9rem;
+  padding: .3rem .5rem;
+  font-family: var(--Lexend);
+  font-size: 1rem;
+}
+
+.site-content .sidebar .newsletter .form-btn{
+  border-radius: 0;
+  padding: .8rem 32%;
+  margin: 1rem 0;
+  background: var(--sky);
+}
+
+.site-content .sidebar .popular-tags{
+  padding: 5rem 0;
+}
+
+.site-content .sidebar .popular-tags .tags .tag{
+  background: var(--sky);
+  padding: .4rem 1rem;
+  border-radius: 3rem;
+  margin: .4rem .6rem;
 }
