@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { BookComponent } from './pages/book/book.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
+import { BullyingComponent } from './pages/bullying/bullying.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { HeadlineComponent } from './pages/headline/headline.component';
+import { FeedsComponent } from './pages/feeds/feeds.component';
+import { UserComponent } from './pages/user/user.component';
 const routes: Routes = [
   {
     path: '',
@@ -15,8 +19,8 @@ const routes: Routes = [
     component: HomepageComponent
   },
   {
-    path: 'book',
-    component: BookComponent
+    path: 'feeds',
+    component: FeedsComponent
   },
   {
     path: 'about',
@@ -25,6 +29,21 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'bully',
+    component: BullyingComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent
+  },
+  {
+    path: 'article',
+    component: ArticleComponent
+  }, {
+    path: 'headline',
+    component: HeadlineComponent
   },
 ];
 
