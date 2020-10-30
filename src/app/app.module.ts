@@ -16,6 +16,8 @@ import { FeedsComponent } from './pages/feeds/feeds.component';
 import { UserComponent } from './pages/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomMaterialModule } from './material.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     UserComponent
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
+    CustomMaterialModule,
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
