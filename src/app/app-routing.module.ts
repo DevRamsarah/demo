@@ -31,7 +31,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'bully',
+    path: 'type',
     component: BullyingComponent
   },
   {
