@@ -78,6 +78,31 @@
               {{ row.Role}}
             </td>
           </ng-container>
+          
+            <!--Actions Buttons-->
+
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef>Edit</th>
+              <td mat-cell *matCellDef="let row">
+                  <div class="button-container">
+                      <button (click)="handleDelete(row.food_name)" class="action_buttons"
+                          style="background-color: palegreen; color: #fff;" mat-mini-fab>
+                          <mat-icon>edit</mat-icon>
+                      </button>
+                  </div>
+              </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef>Delete</th>
+              <td mat-cell *matCellDef="let row">
+                  <div class="button-container">
+                      <button (click)="handleDelete(row.food_name)" class="action_buttons"
+                          style="background-color: tomato; color: #fff;" mat-mini-fab>
+                          <mat-icon>delete</mat-icon>
+                      </button>
+                  </div>
+              </td>
+          </ng-container>
   
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> 

@@ -35,11 +35,9 @@ export class UserComponent implements OnInit {
     'Password',
     'LastName',
     'FirstName',
-    'Age',
-    'Gender',
-    'UserName',
-    'Gender',
-    'Role'
+    'Role',
+    'edit',
+    'delete'
   ];
   dataSource: MatTableDataSource<UserData>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
