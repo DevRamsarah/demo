@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   getArticles(): Observable<any> {
-    return this.http.get('https://localhost:44347/api/Articles');
+    return this.http.get(`${environment.apiUrl}/Articles`);
   }
 
   addArticle(
@@ -33,6 +34,18 @@ export class ArticleService {
     };
     console.log(body)
 
-    return this.http.post('https://localhost:44347/api/Articles', body);
+    return this.http.post(`${environment.apiUrl}/Articles`, body);
+  }
+
+  deleteArticle(id: number) {
+    return this.http.delete(`${environment.apiUrl}/Articles/${id}`);
+  }
+
+  updateFood(newFood) {
+    const body = newFood;
+    return this.http.put(
+      `${environment.apiUrl}/Articles`,
+      JSON.stringify(body)
+    );
   }
 }
