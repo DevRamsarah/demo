@@ -13,11 +13,29 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  addUserForm = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    Password: new FormControl('', [Validators.required]),
+    Age: new FormControl('', [Validators.required]),
+    Gender: new FormControl('', [Validators.required]),
+    FirstName: new FormControl('', [Validators.required]),
+    LastName: new FormControl('', [Validators.required]),
+    UserName: new FormControl('', [Validators.required]),
+    Role: new FormControl('', [Validators.required]),
+
+  });
+
+
+
+
   displayedColumns: string[] = [
     'UserID',
     'Email',
+    'Password',
     'LastName',
     'FirstName',
+    'Age',
+    'Gender',
     'UserName',
     'Gender',
     'Role'
@@ -25,7 +43,7 @@ export class UserComponent implements OnInit {
   dataSource: MatTableDataSource<UserData>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  addUserForm: FormGroup;
+
 
   constructor(private userService: UserService) { }
 
@@ -40,9 +58,32 @@ export class UserComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
   addUser(): void {
-    console.log(this.Email)
 
+    const email = this.addUserForm.value.email;
+    const Password = this.addUserForm.value.Password;
+    const Age = this.addUserForm.value.Age;
+    const Gender = this.addUserForm.value.Gender;
+    const FirstName = this.addUserForm.value.FirstName;
+    const LastName = this.addUserForm.value.LastName;
+    const UserName = this.addUserForm.value.UserName;
+    const Role = this.addUserForm.value.Role;
+    this.userService.addUser(
+      email,
+      Password,
+      LastName,
+      FirstName,
+      UserName,
+      Age,
+      Gender,
+      Role
+    ).subscribe(
+      (data) => {
+        window.location.href = 'User';
+      },
+      (err) => {
+        console.error("Error")
+      }
+    );
   }
 }
