@@ -23,6 +23,7 @@ export class ArticleComponent implements OnInit {
     Description: new FormControl('', [Validators.required]),
     Category: new FormControl('', [Validators.required]),
     Headlines: new FormControl('', [Validators.required]),
+    Image: new FormControl('', [Validators.required]),
 
 
   });
@@ -37,7 +38,6 @@ export class ArticleComponent implements OnInit {
     Headlines: new FormControl('', [Validators.required]),
 
   });
-  row = [];
   router: Router;
 
   displayedColumns: string[] = [
@@ -55,7 +55,17 @@ export class ArticleComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   addUserForm: FormGroup;
+  row = {
+    ArticleID: "",
+    Title: "",
+    SubTitle: "",
+    Description: "",
+    Category: "",
+    Current_Time: "",
+    Headlines: "",
+    Image: ""
 
+  };
   constructor(private ArticleService: ArticleService) { }
 
 
@@ -74,8 +84,8 @@ export class ArticleComponent implements OnInit {
     console.log(row)
   }
   addArticle(): void {
-    const Current_Time = this.addArticleForm.value.Current_Time;
-    const Slideshow = this.addArticleForm.value.Slideshow;
+    const Current_Time = new Date().toISOString().substr(0, 10) + 'T' + '00:00:00';
+    const Slideshow = this.addArticleForm.value.Image;
     const Title = this.addArticleForm.value.Title;
     const SubTitle = this.addArticleForm.value.SubTitle;
     const Description = this.addArticleForm.value.Description;
@@ -103,13 +113,13 @@ export class ArticleComponent implements OnInit {
 
   editArticle(row): void {
     const id = this.editArticleForm.value.ArticleID == "" ? row.ArticleID : this.editArticleForm.value.ArticleID;
-    const Current_Time = this.editArticleForm.value.ArticleName == "" ? row.ArticleName : this.editArticleForm.value.ArticleName;
-    const Slideshow = this.editArticleForm.value.ArticleDesc == "" ? row.ArticleDesc : this.editArticleForm.value.ArticleDesc;
-    const Title = this.editArticleForm.value.Title;
-    const SubTitle = this.editArticleForm.value.SubTitle;
-    const Description = this.editArticleForm.value.Description;
-    const Category = this.editArticleForm.value.Category;
-    const Headlines = this.editArticleForm.value.Headlines;
+    const Current_Time = row.ArticleID;
+    const Slideshow = this.addArticleForm.value.Image == "" ? row.Slideshow : this.editArticleForm.value.Image;
+    const Title = this.addArticleForm.value.Title == "" ? row.Title : this.editArticleForm.value.Title;
+    const SubTitle = this.addArticleForm.value.SubTitle == "" ? row.SubTitle : this.editArticleForm.value.SubTitle;
+    const Description = this.addArticleForm.value.Description == "" ? row.Description : this.editArticleForm.value.Description;
+    const Category = this.addArticleForm.value.Category == "" ? row.Category : this.editArticleForm.value.Category;
+    const Headlines = this.addArticleForm.value.Headlines == "" ? row.Headlines : this.editArticleForm.value.Headlines;
 
     this.ArticleService.editArticle(
       id,
@@ -123,7 +133,7 @@ export class ArticleComponent implements OnInit {
 
     ).subscribe(
       (data) => {
-        this.router.navigate(['/Article']);
+        this.router.navigate(['Article']);
       },
       (err) => {
         console.error("Error")

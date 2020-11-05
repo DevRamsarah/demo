@@ -110,26 +110,24 @@
         </button>
       </div>
    
-    <form >
-      <div class="modal-body">
+      <form [formGroup]="addArticleForm" ngNativeValidate (ngSubmit)="addArticle()">
+        <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Image:</label>
-            <input type="file" class="form-control" id="Title" >
+            <input type="file" class="form-control" formControlName="Image" >
             <label for="recipient-name" class="col-form-label">Title:</label>
-            <input type="text" class="form-control" id="Title" >
+            <input type="text" class="form-control" formControlName="Title" >
             <label for="message-text" class="col-form-label">Sub Title</label>
-            <input type="text" class="form-control" id="SubTitle">
+            <input type="text" class="form-control" formControlName="SubTitle">
             <label for="message-text" class="col-form-label">Description</label>
-            <input type="text" class="form-control" id="Description">
-            <label for="message-text" class="col-form-label">Slideshow</label>
-            <input type="checkbox" class="form-control" id="UserName">
+            <input type="text" class="form-control" formControlName="Description">
             <label for="message-text" class="col-form-label">Headlines</label>
-            <input type="checkbox" class="form-control" id="UserName">
+            <input type="checkbox" class="form-control" formControlName="Headlines">
             <div class="input-group my-3">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">Category</label>
               </div>
-              <select class="custom-select" id="inputGroupSelect01">
+              <select class="custom-select" formControlName="Category">
                 <option value="User" selected>User</option>
                 <option value="Admin">Admin</option>
               </select>
@@ -138,9 +136,53 @@
           </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Add Article</button>
+          <button type="submit" class="btn btn-primary">Add Article</button>
       </div>
   </form>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+   
+      <form [formGroup]="addArticleForm" ngNativeValidate (ngSubmit)="addArticle()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Image:</label>
+            <input type="file" class="form-control" formControlName="Image" >
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" formControlName="Title" >
+            <label for="message-text" class="col-form-label">Sub Title</label>
+            <input type="text" class="form-control" formControlName="SubTitle">
+            <label for="message-text" class="col-form-label">Description</label>
+            <input type="text" class="form-control" formControlName="Description">
+            <label for="message-text" class="col-form-label">Headlines</label>
+            <input type="checkbox" class="form-control" formControlName="Headlines">
+            <div class="input-group my-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Category</label>
+              </div>
+              <select class="custom-select" formControlName="Category">
+                <option value="User" selected>User</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add Article</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+
