@@ -143,7 +143,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -153,24 +153,24 @@
         </button>
       </div>
    
-      <form [formGroup]="addArticleForm" ngNativeValidate (ngSubmit)="addArticle()">
+      <form [formGroup]="editArticleForm" ngNativeValidate (ngSubmit)="editArticle(row)">
         <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Image:</label>
-            <input type="file" class="form-control" formControlName="Image" >
+            <input type="file" class="form-control"  value={{row.Slideshow}} formControlName="Image" >
             <label for="recipient-name" class="col-form-label">Title:</label>
-            <input type="text" class="form-control" formControlName="Title" >
+            <input type="text" class="form-control"  value={{row.Title}} formControlName="Title" >
             <label for="message-text" class="col-form-label">Sub Title</label>
-            <input type="text" class="form-control" formControlName="SubTitle">
+            <input type="text" class="form-control"  value={{row.SubTitle}} formControlName="SubTitle">
             <label for="message-text" class="col-form-label">Description</label>
-            <input type="text" class="form-control" formControlName="Description">
+            <input type="text" class="form-control"  value={{row.Description}} formControlName="Description">
             <label for="message-text" class="col-form-label">Headlines</label>
-            <input type="checkbox" class="form-control" formControlName="Headlines">
+            <input type="checkbox" class="form-control"  value={{row.Headlines}} formControlName="Headlines">
             <div class="input-group my-3">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">Category</label>
               </div>
-              <select class="custom-select" formControlName="Category">
+              <select class="custom-select"  value={{row.Category}} formControlName="Category">
                 <option value="User" selected>User</option>
                 <option value="Admin">Admin</option>
               </select>
@@ -179,7 +179,7 @@
           </div>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Add Article</button>
+          <button type="submit" class="btn btn-primary">Edit Article</button>
       </div>
   </form>
     </div>
