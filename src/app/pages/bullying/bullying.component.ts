@@ -40,7 +40,11 @@ export class BullyingComponent implements OnInit {
   dataSource: MatTableDataSource<TypeData>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  row = [];
+  row = {
+    CategoryID: "",
+    CategoryName: "",
+    CategoryDesc: ""
+  };
   router: Router;
 
 
@@ -52,6 +56,7 @@ export class BullyingComponent implements OnInit {
     this.TypeService.getTypes().subscribe(
       (data: Array<TypeData>) => {
         this.dataSource = new MatTableDataSource(data)
+
       });
 
     this.dataSource.paginator = this.paginator;

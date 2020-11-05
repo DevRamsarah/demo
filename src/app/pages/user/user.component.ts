@@ -55,7 +55,18 @@ export class UserComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   router: Router;
 
-  row = [];
+  row = {
+    id: "",
+    Age: "",
+    Email: "",
+    FirstName: "",
+    Gender: "",
+    LastName: "",
+    Password: "",
+    Role: "",
+    UserID: "",
+    UserName: ""
+  };
 
   constructor(private userService: UserService) { }
 
@@ -66,6 +77,7 @@ export class UserComponent implements OnInit {
     this.userService.getUsers().subscribe(
       (data: Array<UserData>) => {
         this.dataSource = new MatTableDataSource(data)
+
       });
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

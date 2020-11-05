@@ -1,139 +1,146 @@
 <div class="main">
-        <div class="container">
-      
-      
-          <div class="col-12" style="margin-top: 2%;">
-            <!-- <mat-form-field>
-              <mat-label>Filter</mat-label>
-              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. id/name..." #input />
-            </mat-form-field> -->
-            <ng-container>
-                <button mat-raised-button color="primary" style="  margin-right: 2vh;" data-toggle="modal" data-target="#exampleModal">
-              Add Article
-                </button>
-            </ng-container>
-          </div>
-          <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource" matSort matSortDirection="desc">
-              <!-- ID Column -->
-              <ng-container matColumnDef="ArticleID">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Article ID
-                </th>
-                <td mat-cell *matCellDef="let row">{{ row.ArticleID }}</td>
-              </ng-container>
-      
-              <ng-container matColumnDef="Title">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Title
-                </th>
-                <td mat-cell *matCellDef="let row">{{ row.Title }}</td>
-              </ng-container>
-      
-              <ng-container matColumnDef="SubTitle">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                  SubTitle
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{ row.SubTitle }}
-                </td>
-            </ng-container>
-                    <ng-container matColumnDef="Description">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-                      <td mat-cell *matCellDef="let row">{{ row.Description }}</td>
-                    </ng-container>
-      
-              <ng-container matColumnDef="Category">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-                <td mat-cell *matCellDef="let row">{{ row.Category }}</td>
-              </ng-container>
-      
-      
-              <ng-container matColumnDef="Current_Time">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                 Date
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{ row.Current_Time}}
-                </td>
-              </ng-container>
-    
-              <ng-container matColumnDef="Headlines">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                 Headlines
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{ row.Headlines}}
-                </td>
+  <div class="container">
+
+
+    <div class="col-12" style="margin-top: 2%;">
+      <!-- <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. id/name..." #input />
+      </mat-form-field> -->
+      <ng-container>
+          <button mat-raised-button color="primary" style="  margin-right: 2vh;" data-toggle="modal" data-target="#exampleModal">
+        Add Article
+          </button>
+      </ng-container>
+    </div>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort matSortDirection="desc">
+        <!-- ID Column -->
+        <ng-container matColumnDef="ArticleID">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Article ID
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.ArticleID }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Title
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.Title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="SubTitle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            SubTitle
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.SubTitle }}
+          </td>
+      </ng-container>
+              <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                <td mat-cell *matCellDef="let row">{{ row.Description }}</td>
               </ng-container>
 
-              <ng-container matColumnDef="Slideshow">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                 Slideshow
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{ row.Slideshow}}
-                </td>
-              </ng-container>
-      
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> 
-      
-              <!-- Row shown when there is no matching data. -->
-              <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">
-                  No data matching the filter "{{ input.value }}"
-                </td>
-              </tr>
-            </table>
-      
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          </div>
-    
-        
-        
+        <ng-container matColumnDef="Category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+          <td mat-cell *matCellDef="let row">{{ row.Category }}</td>
+        </ng-container>
+
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let row">
+            <div class="button-container">
+                <button (click)="handleEdit(row)" class="action_buttons"
+                    style="background-color: palegreen; color: #fff;"  data-toggle="modal" 
+                    data-target="#editmodal" mat-mini-fab>
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let row">
+            <div class="button-container">
+                <button (click)="delete(row.CategoryID)" class="action_buttons"
+                    style="background-color: tomato; color: #fff;" mat-mini-fab>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </td>
+    </ng-container>
+
+
+        <ng-container matColumnDef="Headlines">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+           Headlines
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.Headlines}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> 
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-         
-          <form >
-            <div class="modal-body">
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Image:</label>
-                  <input type="file" class="form-control" id="Title" >
-                  <label for="recipient-name" class="col-form-label">Title:</label>
-                  <input type="text" class="form-control" id="Title" >
-                  <label for="message-text" class="col-form-label">Sub Title</label>
-                  <input type="text" class="form-control" id="SubTitle">
-                  <label for="message-text" class="col-form-label">Description</label>
-                  <input type="text" class="form-control" id="Description">
-                  <label for="message-text" class="col-form-label">Slideshow</label>
-                  <input type="checkbox" class="form-control" id="UserName">
-                  <label for="message-text" class="col-form-label">Headlines</label>
-                  <input type="checkbox" class="form-control" id="UserName">
-                  <div class="input-group my-3">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Category</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect01">
-                      <option value="User" selected>User</option>
-                      <option value="Admin">Admin</option>
-                    </select>
-                  </div>
-    
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Add Article</button>
-            </div>
-        </form>
-          </div>
-        </div>
+
+  
+  
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+   
+    <form >
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Image:</label>
+            <input type="file" class="form-control" id="Title" >
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="Title" >
+            <label for="message-text" class="col-form-label">Sub Title</label>
+            <input type="text" class="form-control" id="SubTitle">
+            <label for="message-text" class="col-form-label">Description</label>
+            <input type="text" class="form-control" id="Description">
+            <label for="message-text" class="col-form-label">Slideshow</label>
+            <input type="checkbox" class="form-control" id="UserName">
+            <label for="message-text" class="col-form-label">Headlines</label>
+            <input type="checkbox" class="form-control" id="UserName">
+            <div class="input-group my-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Category</label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option value="User" selected>User</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Add Article</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
