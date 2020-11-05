@@ -7,8 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-
+import { AngularFireStorage } from '@angular/fire/storage'
+import { finalize } from "rxjs/operators";
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -66,7 +66,11 @@ export class ArticleComponent implements OnInit {
     Slideshow: ""
 
   };
-  constructor(private ArticleService: ArticleService) { }
+  filePath: string
+  imgSrc: string;
+  selectedImage: any = null;
+  img: string
+  constructor(private ArticleService: ArticleService, private afStorage: AngularFireStorage) { }
 
 
   ngOnInit(): void {
@@ -78,20 +82,57 @@ export class ArticleComponent implements OnInit {
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+  }
+  upload(event) {
+    this.filePath = event.target.files[0]
+  }
+  uploadImage() {
+    console.log(this.filePath[0])
+    const fileRef = this.afStorage.ref(this.addArticleForm.value.Slideshow.slice(12));
+    this.afStorage.upload(this.addArticleForm.value.Slideshow.slice(12), this.filePath).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          // formValue['imageUrl'] = url;
+          this.img = url
+          console.log(url)
+        })
+      })
+    ).subscribe();
+
+  }
+  showPreview(event: any) {
+    this.filePath = event.target.files[0]
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    }
+    else {
+      this.imgSrc = '../../../img/image_placeholder.jpg';
+      this.selectedImage = null;
+    }
   }
   handleEdit(row): void {
     this.row = row;
+    var myPath = this.row.Slideshow;
+
+
+    document.getElementById("img").innerHTML = "<img src='" + myPath + "' width='350px' height='250px'>";
     console.log(row)
+
   }
   addArticle(): void {
+    this.uploadImage();
     const Current_Time = new Date().toISOString().substr(0, 10) + 'T' + '00:00:00';
-    const Slideshow = this.addArticleForm.value.Slideshow;
+    const Slideshow = this.img;
     const Title = this.addArticleForm.value.Title;
     const SubTitle = this.addArticleForm.value.SubTitle;
     const Description = this.addArticleForm.value.Description;
     const Category = this.addArticleForm.value.Category;
     const Headlines = this.addArticleForm.value.Headlines;
-
+    console.log(Slideshow)
     this.ArticleService.addArticle(
       Title,
       SubTitle,
@@ -112,9 +153,10 @@ export class ArticleComponent implements OnInit {
   }
 
   editArticle(row): void {
+
     const id = this.editArticleForm.value.ArticleID == "" ? row.ArticleID : this.editArticleForm.value.ArticleID;
     const Current_Time = row.Current_Time;
-    const Slideshow = this.editArticleForm.value.Slideshow == "" ? row.Slideshow : this.editArticleForm.value.Slideshow;
+    const Slideshow = this.editArticleForm.value.Slideshow == "" ? row.Slideshow : this.uploadImage();
     const Title = this.editArticleForm.value.Title == "" ? row.Title : this.editArticleForm.value.Title;
     const SubTitle = this.editArticleForm.value.SubTitle == "" ? row.SubTitle : this.editArticleForm.value.SubTitle;
     const Description = this.editArticleForm.value.Description == "" ? row.Description : this.editArticleForm.value.Description;

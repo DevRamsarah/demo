@@ -20,7 +20,8 @@ import { CustomMaterialModule } from './material.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireModule } from '@angular/fire'
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,15 @@ import { FileUploadModule } from 'ng2-file-upload';
     NoopAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule
+    FileUploadModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyB912rnXahnlkqLypafjKuOTF9ki8VWIQk",
+      authDomain: "familia-c264b.firebaseapp.com",
+      databaseURL: "https://familia-c264b.firebaseio.com",
+      projectId: "familia-c264b",
+      storageBucket: "familia-c264b.appspot.com"
+    }),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

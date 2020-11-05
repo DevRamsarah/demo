@@ -113,8 +113,11 @@
       <form [formGroup]="addArticleForm" ngNativeValidate (ngSubmit)="addArticle()">
         <div class="modal-body">
           <div class="form-group">
+            <div class="text-center">
+              <img [src]="imgSrc" width="350px" height="250px"  (click)="fileUploader.click()">
+            </div>
             <label for="recipient-name" class="col-form-label">Image:</label>
-            <input type="file" class="form-control" formControlName="Slideshow" >
+            <input type="file" class="form-control" #fileUploader  (change)="showPreview($event)" accept=".png,.jpg" formControlName="Slideshow"/>
             <label for="recipient-name" class="col-form-label">Title:</label>
             <input type="text" class="form-control" formControlName="Title" >
             <label for="message-text" class="col-form-label">Sub Title</label>
@@ -157,9 +160,11 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Image:</label>
-            <input type="file" class="form-control"  value={{row.Slideshow}} formControlName="Slideshow" >
-            <label for="recipient-name" class="col-form-label">Title:</label>
-            <input type="text" class="form-control"  value={{row.Title}} formControlName="Title" >
+            <div class="text-center" id="img">
+       
+          </div>
+          <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control"  value={{row.Slideshow}} formControlName="Title" >
             <label for="message-text" class="col-form-label">Sub Title</label>
             <input type="text" class="form-control"  value={{row.SubTitle}} formControlName="SubTitle">
             <label for="message-text" class="col-form-label">Description</label>
