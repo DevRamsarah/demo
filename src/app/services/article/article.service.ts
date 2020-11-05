@@ -62,7 +62,7 @@ export class ArticleService {
       Slideshow
     };
     console.log(body)
-    return this.http.put(`${environment.apiUrl}/Articles` + ArticleID, body);
+    return this.http.put(`${environment.apiUrl}/Articles/${ArticleID}`, body);
 
   }
 }
