@@ -3,4 +3,6 @@ footer{background: black;
     display: flex;
     justify-content: center;
     align-items: center;
+Width: 100%;
+bottom: 0;
 color: white;}

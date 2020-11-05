@@ -1,10 +1,7 @@
 <div class="container shadow">
 <section class="slideshow  ">
     <div class="content">
-        
         <div class="slider-content">
-            
-            
             <figure class="shadow" *ngFor="let article of article"> 
                 <img [src]="article.Slideshow">
             </figure> 
@@ -23,56 +20,15 @@
                             <img class="card-img-top" [src]="article.Slideshow" width="650px" height="350px" alt="Card image cap">
                             <div class="card-body">
                                 <h3 class="font-normal">{{article.Title}}</h3>
-                                <h5 class="label label-info label-rounded ">{{article.SubTitle}}</h5>
-                                <p class="m-b-0 m-t-20">{{article.Description}}</p>
+                                <h4 class="label label-info label-rounded ">{{article.SubTitle}}</h4>
+                                <p class="m-b-0 m-t-20">{{article.Description | slice:0:100}}</p>
                                 <div class="d-flex m-t-20">
                                     <button class="btn p-l-0 btn-link ">Read more</button>
-                                    <div class="ml-auto align-self-center">
-                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart-o"></i></a>
-                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-share-alt"></i></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12" style="max-height:100vh;padding: 20px;">
-                        <div class="card shadow">
-                            <img class="card-img-top img-responsive" src="assets\img\image--005.jpg"  alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="font-normal">Types of Bullying : Relational</h3>
-                                <span class="label label-info label-rounded">Technology</span>
-                                <p class="m-b-0 m-t-20">Titudin venenatis ipsum aciat. Vestibulum ullamcorper quam. nenatis ipsum ac
-                                    feugiat.
-                                    Ibulum ullamcorper</p>
-                                <div class="d-flex m-t-20">
-                                    <button class="btn p-l-0 btn-link ">Read more</button>
-                                    <div class="ml-auto align-self-center">
-                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart-o"></i></a>
-                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-share-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="max-height:100vh;padding: 20px;">
-                        <div class="card shadow">
-                            <img class="card-img-top img-responsive" src="assets\img\image--008.jpg"  alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="font-normal">Gay Bullying</h3>
-                                <span class="label label-info label-rounded">Technology</span>
-                                <p class="m-b-0 m-t-20">Titudin venenatis ipsum aciat. Vestibulum ullamcorper quam. nenatis ipsum ac
-                                    feugiat.
-                                    Ibulum ullamcorper</p>
-                                <div class="d-flex m-t-20">
-                                    <button class="btn p-l-0 btn-link ">Read more</button>
-                                    <div class="ml-auto align-self-center">
-                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart-o"></i></a>
-                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-share-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div></div>
+                </div>
                     <aside class="sidebar" style="padding-top: 20px;" >
                         <div class="card shadow mb-3">
                             <div class="pt-3 px-3">
@@ -197,13 +153,13 @@
 
  
                     </aside>                    
-                    <div class="pagination flex-row">
+                    <!-- <div class="pagination flex-row">
                         <a href="#"><i class="fas fa-chevron-left"></i></a>
                         <a href="#" class="pages">1</a>
                         <a href="#" class="pages">2</a>
                         <a href="#" class="pages">3</a>
                         <a href="#"><i class="fas fa-chevron-right"></i></a>
-                    </div>
+                    </div> -->
 
             </div>
         </section>
@@ -260,6 +216,8 @@
                                     </li>
                                 </ul>
                             </div>
+                            <app-footer></app-footer>
+
                             <script>
 
                             function toShow() {
