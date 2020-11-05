@@ -5,36 +5,10 @@
         <div class="slider-content">
             
             
-            <figure class="shadow" > 
-                <img src="assets\img\image--002.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--003.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--004.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--005.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--006.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--007.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--008.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--009.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--010.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--011.jpg">
-            </figure>            <figure class="shadow" > 
-                <img src="assets\img\image--012.jpg">
-            </figure>           <figure class="shadow" > 
-                <img src="assets\img\image--014.jpg">
-            </figure>           <figure class="shadow" > 
-                <img src="assets\img\image--015.jpg">
-            </figure>
-            <figure class="shadow" > 
-                <img src="assets\familliaLogo">
-            </figure>
+            <figure class="shadow" *ngFor="let article of article"> 
+                <img [src]="article.Slideshow">
+            </figure> 
+        
         </div>
     </div>
     
@@ -44,15 +18,13 @@
         <section class="">
             <div class="site-content">
                 <div class="posts row">
-                    <div class="col-md-12" style="padding: 20px;">
-                        <div class="card shadow">
-                            <img class="card-img-top" src="assets\img\image--004.jpg" width="650px" height="350px" alt="Card image cap">
+                    <div class="col-md-12" style="padding: 20px;" *ngFor="let article of article">
+                        <div class="card shadow" >
+                            <img class="card-img-top" [src]="article.Slideshow" width="650px" height="350px" alt="Card image cap">
                             <div class="card-body">
-                                <h3 class="font-normal">Types of Bullying : Verbal</h3>
-                                <span class="label label-info label-rounded">Technology</span>
-                                <p class="m-b-0 m-t-20">Titudin venenatis ipsum aciat. Vestibulum ullamcorper quam. nenatis ipsum ac
-                                    feugiat.
-                                    Ibulum ullamcorper</p>
+                                <h3 class="font-normal">{{article.Title}}</h3>
+                                <h5 class="label label-info label-rounded ">{{article.SubTitle}}</h5>
+                                <p class="m-b-0 m-t-20">{{article.Description}}</p>
                                 <div class="d-flex m-t-20">
                                     <button class="btn p-l-0 btn-link ">Read more</button>
                                     <div class="ml-auto align-self-center">

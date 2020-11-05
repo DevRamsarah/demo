@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import gsap from 'gsap/all';
 import { Router } from '@angular/router';
+import { ArticleService } from 'src/app/services/article/article.service';
+import { ArticleData } from 'src/app/models/article.model';
 
 
 @Component({
@@ -10,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private ArticleService: ArticleService) { }
+  article = []
   ngOnInit(): void {
 
     const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
@@ -22,6 +24,14 @@ export class HomepageComponent implements OnInit {
     tl.fromTo("nav", { opacity: 0 }, { opacity: 1, duration: 1 });
     tl.fromTo(".big-text", { opacity: 0 }, { opacity: 1, duration: 1 }, "-=1");
 
+    this.ArticleService.getArticles().subscribe(
+      (data: Array<ArticleData>) => {
+        data.forEach((art) => {
+          this.article.push(art)
+        })
+        console.log(this.article)
+      });
   }
+
 
 }
