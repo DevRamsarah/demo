@@ -85,8 +85,9 @@
               <th mat-header-cell *matHeaderCellDef>Edit</th>
               <td mat-cell *matCellDef="let row">
                   <div class="button-container">
-                      <button (click)="handleDelete(row.food_name)" class="action_buttons"
-                          style="background-color: palegreen; color: #fff;" mat-mini-fab>
+                      <button (click)="handleEdit(row)" class="action_buttons"
+                          style="background-color: palegreen; color: #fff;"  data-toggle="modal" 
+                          data-target="#editmodal" mat-mini-fab>
                           <mat-icon>edit</mat-icon>
                       </button>
                   </div>
@@ -96,7 +97,7 @@
               <th mat-header-cell *matHeaderCellDef>Delete</th>
               <td mat-cell *matCellDef="let row">
                   <div class="button-container">
-                      <button (click)="handleDelete(row.food_name)" class="action_buttons"
+                      <button (click)="delete(row.UserID)" class="action_buttons"
                           style="background-color: tomato; color: #fff;" mat-mini-fab>
                           <mat-icon>delete</mat-icon>
                       </button>
@@ -172,6 +173,61 @@
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Add User</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+     
+        <form [formGroup]="editUserForm" ngNativeValidate (ngSubmit)="editUser(row)">
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-6">
+                  <input type="hidden" class="form-control" formControlName="id" value={{row.UserID}}>
+
+              <label class="col-form-label">Email:</label>
+              <input type="email" class="form-control" formControlName="email" value={{row.Email}}>
+              <label class="col-form-label">Password:</label>
+              <input type="password" class="form-control" formControlName="Password"  value={{row.Password}} >
+
+              <label class="col-form-label">Age:</label>
+              <input type="text" class="form-control" formControlName="Age"  value={{row.Age}}>
+              <label class="col-form-label" *ngIf='row.Gender'>Gender : Male</label>
+              <label class="col-form-label" *ngIf='!row.Gender'>Gender : Female</label>
+              <input type="radio" style="display: none;" class="form-control" formControlName="Gender" value="true" >
+            </div>
+            <div class="col-6">
+              <label class="col-form-label">First Name</label>
+              <input type="text" class="form-control" formControlName="FirstName"  value={{row.FirstName}}>
+              <label class="col-form-label">Last Name</label>
+              <input type="text" class="form-control" formControlName="LastName" value={{row.LastName}}>
+              <label class="col-form-label">User Name</label>
+              <input type="text" class="form-control" formControlName="UserName" value={{row.UserName}}>
+              <div class="input-group my-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="Role">Role</label>
+                </div>
+                <select class="custom-select" formControlName="Role" value={{row.Role}}>
+                  <option value="User" selected>User</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </div>
+            </div>
+          </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Edit User</button>
         </div>
     </form>
       </div>

@@ -866,12 +866,19 @@ margin: .4rem .6rem;
 
 
 .fab-container {
-position: fixed;
-bottom: 50px;
-right: 50px;
-z-index: 999;
-cursor: pointer;
-}
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 999;
+  cursor: pointer;
+  }
+  .fab-containerCB {
+    position: fixed;
+    bottom: 120px;
+    right: 50px;
+    z-index: 999;
+    cursor: pointer;
+    }
 
 .fab-icon-holder {
 width: 50px;

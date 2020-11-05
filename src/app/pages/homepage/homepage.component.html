@@ -257,11 +257,14 @@
 </div>
 <div class="slider"></div>
    
+<div  class="fab-containerCB popup" style="display: none;" id="iframeDisplay">
+    <iframe src='https://webchat.botframework.com/embed/grfchatbot-bot?s=lkJGXlSK8Gg.4704V7Cc8Y89yzFrVKJJIhq_ZBP5uSMUTDTX4bei96E'  style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
+</div> 
                             <div class="fab-container">
                                 <div class="fab fab-icon-holder">
                                     <i class="fas fa-question"></i>
                                 </div>
-                        
+                                
                                 <ul class="fab-options">
                                     <li>
                                         <span class="fab-label">Documentation</span>
@@ -269,16 +272,12 @@
                                             <i class="fas fa-file-alt"></i>
                                         </div>
                                     </li>
-                                    <li>
-                                        <span class="fab-label">Video Tutorials</span>
-                                        <div class="fab-icon-holder">
-                                            <i class="fas fa-video"></i>
-                                        </div>
-                                    </li>
+
                                     <li>
                                         <span class="fab-label">ChatBot</span>
-                                        <div class="fab-icon-holder">
+                                        <div class="fab-icon-holder"  onclick="toShow()">
                                             <i class="fas fa-comments"></i>
+                                            
                                         </div>
                                     </li>
                                     <li>
@@ -289,4 +288,18 @@
                                     </li>
                                 </ul>
                             </div>
+                            <script>
+
+                            function toShow() {
+                                const button = document.querySelector('.fab-icon-holder');
+const popup = document.querySelector('.popup');
+
+button.addEventListener('click', ()=>{
+  popup.style.display === 'none' ? popup.style.display = 'block' : popup.style.display = 'none';
+})
+                              }
+                            </script>
+                     
+  
+
     

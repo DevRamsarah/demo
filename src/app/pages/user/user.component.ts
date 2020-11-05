@@ -25,7 +25,18 @@ export class UserComponent implements OnInit {
     Role: new FormControl('', [Validators.required]),
 
   });
+  editUserForm = new FormGroup({
+    UserID: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    Password: new FormControl('', [Validators.required]),
+    Age: new FormControl('', [Validators.required]),
+    Gender: new FormControl('', [Validators.required]),
+    FirstName: new FormControl('', [Validators.required]),
+    LastName: new FormControl('', [Validators.required]),
+    UserName: new FormControl('', [Validators.required]),
+    Role: new FormControl('', [Validators.required]),
 
+  });
 
 
 
@@ -44,10 +55,11 @@ export class UserComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   router: Router;
 
+  row = [];
 
   constructor(private userService: UserService) { }
 
-  Email = document.getElementById("email");
+
 
   ngOnInit(): void {
 
@@ -57,6 +69,10 @@ export class UserComponent implements OnInit {
       });
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  handleEdit(row): void {
+    this.row = row;
+    console.log(row)
   }
   addUser(): void {
 
@@ -77,6 +93,50 @@ export class UserComponent implements OnInit {
       Age,
       Gender,
       Role
+    ).subscribe(
+      (data) => {
+        this.router.navigate(['/User']);
+      },
+      (err) => {
+        console.error("Error")
+      }
+    );
+  }
+
+  editUser(row): void {
+    const id = this.editUserForm.value.UserID == "" ? row.UserID : this.editUserForm.value.UserID;
+    const email = this.editUserForm.value.email == "" ? row.Email : this.editUserForm.value.email;
+    const Password = this.editUserForm.value.Password == "" ? row.Password : this.editUserForm.value.Password;
+    const Age = this.editUserForm.value.Age == "" ? row.Age : this.editUserForm.value.Age;
+    const Gender = this.editUserForm.value.Gender == "" ? row.Gender : this.editUserForm.value.Gender;
+    const FirstName = this.editUserForm.value.FirstName == "" ? row.FirstName : this.editUserForm.value.FirstName;
+    const LastName = this.editUserForm.value.LastName == "" ? row.LastName : this.editUserForm.value.LastName;
+    const UserName = this.editUserForm.value.UserName == "" ? row.UserName : this.editUserForm.value.UserName;
+    const Role = this.editUserForm.value.Role == "" ? row.Role : this.editUserForm.value.Role;
+
+
+    this.userService.editUser(
+      id,
+      email,
+      Password,
+      LastName,
+      FirstName,
+      UserName,
+      Age,
+      Gender,
+      Role
+    ).subscribe(
+      (data) => {
+        this.router.navigate(['/User']);
+      },
+      (err) => {
+        console.error("Error")
+      }
+    );
+  }
+  delete(id): void {
+
+    this.userService.delete(id
     ).subscribe(
       (data) => {
         this.router.navigate(['/User']);

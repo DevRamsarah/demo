@@ -38,6 +38,31 @@
               {{ row.CategoryDesc }}
             </td>
         </ng-container>
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>Edit</th>
+          <td mat-cell *matCellDef="let row">
+              <div class="button-container">
+                  <button (click)="handleEdit(row)" class="action_buttons"
+                      style="background-color: palegreen; color: #fff;"  data-toggle="modal" 
+                      data-target="#editmodal" mat-mini-fab>
+                      <mat-icon>edit</mat-icon>
+                  </button>
+              </div>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>Delete</th>
+          <td mat-cell *matCellDef="let row">
+              <div class="button-container">
+                  <button (click)="delete(row.CategoryID)" class="action_buttons"
+                      style="background-color: tomato; color: #fff;" mat-mini-fab>
+                      <mat-icon>delete</mat-icon>
+                  </button>
+              </div>
+          </td>
+      </ng-container>
+
+
                 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> 
@@ -60,25 +85,53 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add Type</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
      
-      <form >
-        <div class="modal-body">
+        <form [formGroup]="addCategoryForm" ngNativeValidate (ngSubmit)="addCategory()">
+          <div class="modal-body">
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Type Name</label>
-              <input type="text" class="form-control" id="Title" >
+              <input type="text" class="form-control"  formControlName="CategoryName" >
               <label for="recipient-name" class="col-form-label">Type Description:</label>
-              <input type="text" class="form-control" id="Title" >
+              <input type="text" class="form-control"  formControlName="CategoryDesc"  >
              
 
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Add Article</button>
+            <button type="submit" class="btn btn-primary">Add Type</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Type</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+     
+      <form [formGroup]="editCategoryForm" ngNativeValidate (ngSubmit)="editCategory(row)">
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Type Name</label>
+              <input type="text" class="form-control"  formControlName="CategoryName" value={{row.CategoryName}} >
+              <label for="recipient-name" class="col-form-label">Type Description:</label>
+              <input type="text" class="form-control" formControlName="CategoryDesc" value={{row.CategoryDesc}} >
+             
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Edit Type</button>
         </div>
     </form>
       </div>

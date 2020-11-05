@@ -28,4 +28,26 @@ export class UserService {
 
     return this.http.post('https://localhost:44347/api/Users', body);
   }
+  editUser(UserID: number, Email: string, Password: string, LastName: string, FirstName: string, UserName: string, Age: number, Gender: boolean, Role: string): Observable<any> {
+    const body = {
+      UserID: UserID,
+      Email: Email,
+      Password: Password,
+      LastName: LastName,
+      FirstName: FirstName,
+      UserName: UserName,
+      Age: Age,
+      Gender: Gender,
+      Role: Role,
+
+    };
+    console.log(body)
+
+    return this.http.put('https://localhost:44347/api/Users/' + UserID, body);
+  }
+
+  delete(id): Observable<any> {
+
+    return this.http.delete('https://localhost:44347/api/Users/' + id);
+  }
 }
