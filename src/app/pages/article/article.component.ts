@@ -126,7 +126,7 @@ export class ArticleComponent implements OnInit {
   addArticle(): void {
     this.uploadImage();
     const Current_Time = new Date().toISOString().substr(0, 10) + 'T' + '00:00:00';
-    const Slideshow = this.img;
+    const Slideshow = this.imgSrc;
     const Title = this.addArticleForm.value.Title;
     const SubTitle = this.addArticleForm.value.SubTitle;
     const Description = this.addArticleForm.value.Description;
@@ -144,7 +144,7 @@ export class ArticleComponent implements OnInit {
 
     ).subscribe(
       (data) => {
-        this.router.navigate(['/Article']);
+        location.reload();
       },
       (err) => {
         console.error("Error")
@@ -194,7 +194,7 @@ export class ArticleComponent implements OnInit {
     this.ArticleService.delete(id
     ).subscribe(
       (data) => {
-        this.router.navigate(['/Article']);
+        location.reload();
       },
       (err) => {
         console.error("Error")

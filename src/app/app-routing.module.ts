@@ -8,6 +8,7 @@ import { ArticleComponent } from './pages/article/article.component';
 import { HeadlineComponent } from './pages/headline/headline.component';
 import { FeedsComponent } from './pages/feeds/feeds.component';
 import { UserComponent } from './pages/user/user.component';
+import { BookComponent } from './pages/book/book.component';
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +43,7 @@ const routes: Routes = [
     path: 'article',
     component: ArticleComponent
   }, {
-    path: 'headline',
+    path: 'post',
     component: HeadlineComponent
   },
 ];
