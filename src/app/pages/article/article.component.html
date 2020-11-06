@@ -112,30 +112,33 @@
    
       <form [formGroup]="addArticleForm" ngNativeValidate (ngSubmit)="addArticle()">
         <div class="modal-body">
-          <div class="form-group">
-            <div class="text-center">
+          <div class="form-group row">
+            <div class="text-center ml-4 pl-4">
               <img [src]="imgSrc" width="350px" height="250px"  (click)="fileUploader.click()">
             </div>
+                  <div class="col-md-6">
             <label for="recipient-name" class="col-form-label">Image:</label>
-            <input type="file" class="form-control" #fileUploader  (change)="showPreview($event)" accept=".png,.jpg" formControlName="Slideshow"/>
+            <input type="file" class="form-control" #fileUploader  (change)="showPreview($event)" accept=".png,.jpg" required formControlName="Slideshow"/>
             <label for="recipient-name" class="col-form-label">Title:</label>
-            <input type="text" class="form-control" formControlName="Title" >
+            <input type="text" class="form-control" required formControlName="Title" >
             <label for="message-text" class="col-form-label">Sub Title</label>
-            <input type="text" class="form-control" formControlName="SubTitle">
+            <input type="text" class="form-control" required formControlName="SubTitle">
+          </div>
+          <div class="col-md-6">
             <label for="message-text" class="col-form-label">Description</label>
-            <input type="text" class="form-control" formControlName="Description">
+            <input type="text" class="form-control" required formControlName="Description">
             <label for="message-text" class="col-form-label">Headlines</label>
-            <input type="checkbox" class="form-control" formControlName="Headlines">
+            <input type="checkbox" class="form-control" required formControlName="Headlines">
             <div class="input-group my-3">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">Category</label>
               </div>
-              <select class="custom-select" formControlName="Category">
+              <select class="custom-select" required formControlName="Category">
                 <option value="User" selected>User</option>
                 <option value="Admin">Admin</option>
               </select>
             </div>
-
+          </div>
           </div>
       </div>
       <div class="modal-footer">

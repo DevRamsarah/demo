@@ -10,7 +10,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any> {
-    return this.http.get('https://localhost:44347/api/Post');
+    return this.http.get('https://localhost:44347/api/Posts');
   }
 
   addPost(
@@ -36,6 +36,6 @@ export class PostService {
     };
     console.log(body)
 
-    return this.http.post('https://localhost:44347/api/Post', body);
+    return this.http.post('https://localhost:44347/api/Posts', body);
   }
 }
