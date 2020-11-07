@@ -70,6 +70,8 @@ export class ArticleComponent implements OnInit {
   imgSrc: string;
   selectedImage: any = null;
   img: string
+  private _showClearButton: boolean;
+  private _search: string;
   constructor(private ArticleService: ArticleService, private afStorage: AngularFireStorage) { }
 
 
@@ -122,6 +124,16 @@ export class ArticleComponent implements OnInit {
     document.getElementById("img").innerHTML = "<img src='" + myPath + "' width='350px' height='250px'>";
     console.log(row)
 
+  }
+  applyFilter(event: Event): void {
+    const filterValue: string = (event.target as HTMLInputElement).value;
+    this._search = filterValue;
+    this._showClearButton = true;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
   addArticle(): void {
     this.uploadImage();

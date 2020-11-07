@@ -14,16 +14,16 @@ import { Router } from '@angular/router';
 })
 export class HeadlineComponent implements OnInit {
 
-  addCategoryForm = new FormGroup({
-    CategoryName: new FormControl('', [Validators.required]),
-    CategoryDesc: new FormControl('', [Validators.required]),
+  addPostForm = new FormGroup({
+    CategoryID: new FormControl('', [Validators.required]),
+    PostDes: new FormControl('', [Validators.required]),
 
 
   });
-  editCategoryForm = new FormGroup({
+  editPostForm = new FormGroup({
+    PostID: new FormControl('', [Validators.required]),
     CategoryID: new FormControl('', [Validators.required]),
-    CategoryName: new FormControl('', [Validators.required]),
-    CategoryDesc: new FormControl('', [Validators.required]),
+    PostDes: new FormControl('', [Validators.required]),
 
 
   });
@@ -35,7 +35,8 @@ export class HeadlineComponent implements OnInit {
     "Current_Time",
     "CategoryID",
     "Like",
-    "Dislike"
+    "Dislike",
+    "delete"
 
 
   ];
@@ -43,9 +44,9 @@ export class HeadlineComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   row = {
+    PostID: "",
     CategoryID: "",
-    CategoryName: "",
-    CategoryDesc: ""
+    PostDes: ""
   };
   router: Router;
 
@@ -68,56 +69,68 @@ export class HeadlineComponent implements OnInit {
     this.row = row;
     console.log(row)
   }
-  // addCategory(): void {
-  //   const CategoryName = this.addCategoryForm.value.CategoryName;
-  //   const CategoryDesc = this.addCategoryForm.value.CategoryDesc;
+  addPost(): void {
+    const CategoryID = this.addPostForm.value.CategoryID;
+    const PostDes = this.addPostForm.value.PostDes;
+    const UserID = localStorage.getItem('UserID');
+    const Headlines = false;
+    const Current_Time = new Date().toISOString().substr(0, 10) + 'T' + '00:00:00';
+    const Like = 0;
+    const Dislike = 0;
 
-  //   this.PostService.addPost(
-  //     CategoryName,
-  //     CategoryDesc,
+    this.PostService.addPost(UserID, PostDes, Headlines, Current_Time, CategoryID, Like, Dislike).subscribe(
+      (data) => {
+        location.reload()
+      },
+      (err) => {
+        console.error("Error")
+      }
+    );
+  }
 
-  //   ).subscribe(
-  //     (data) => {
-  //       this.router.navigate(['/Category']);
-  //     },
-  //     (err) => {
-  //       console.error("Error")
-  //     }
-  //   );
-  // }
+  editPost(row): void {
+    //   const id = this.editCategoryForm.value.CategoryID == "" ? row.CategoryID : this.editCategoryForm.value.CategoryID;
+    //   const CategoryID = this.editCategoryForm.value.CategoryID == "" ? row.CategoryID : this.editCategoryForm.value.CategoryID;
+    //   const PostDes = this.editCategoryForm.value.PostDes == "" ? row.PostDes : this.editCategoryForm.value.PostDes;
 
-  // editCategory(row): void {
-  //   const id = this.editCategoryForm.value.CategoryID == "" ? row.CategoryID : this.editCategoryForm.value.CategoryID;
-  //   const CategoryName = this.editCategoryForm.value.CategoryName == "" ? row.CategoryName : this.editCategoryForm.value.CategoryName;
-  //   const CategoryDesc = this.editCategoryForm.value.CategoryDesc == "" ? row.CategoryDesc : this.editCategoryForm.value.CategoryDesc;
+    //   this.PostService.editCategory(
+    //     id,
+    //     CategoryID,
+    //     PostDes,
 
-  //   this.PostService.editCategory(
-  //     id,
-  //     CategoryName,
-  //     CategoryDesc,
+    //   ).subscribe(
+    //     (data) => {
+    //       this.router.navigate(['/Category']);
+    //     },
+    //     (err) => {
+    //       console.error("Error")
+    //     }
+    //   );
+    // }
+    // delete(id): void {
 
-  //   ).subscribe(
-  //     (data) => {
-  //       this.router.navigate(['/Category']);
-  //     },
-  //     (err) => {
-  //       console.error("Error")
-  //     }
-  //   );
-  // }
-  // delete(id): void {
+    //   this.PostService.delete(id
+    //   ).subscribe(
+    //     (data) => {
+    //       this.router.navigate(['/Category']);
+    //     },
+    //     (err) => {
+    //       console.error("Error")
+    //     }
+    //   );
+  }
+  delete(id): void {
 
-  //   this.PostService.delete(id
-  //   ).subscribe(
-  //     (data) => {
-  //       this.router.navigate(['/Category']);
-  //     },
-  //     (err) => {
-  //       console.error("Error")
-  //     }
-  //   );
-  // }
-
+    this.PostService.delete(id
+    ).subscribe(
+      (data) => {
+        location.reload()
+      },
+      (err) => {
+        console.error("Error")
+      }
+    );
+  }
 
 
 }

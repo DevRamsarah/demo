@@ -14,13 +14,13 @@ export class PostService {
   }
 
   addPost(
-    UserID: string,
-    PostDes: string,
-    Headlines: string,
-    Current_Time: string,
-    CategoryID: string,
-    Like: string,
-    Dislike: string,
+    UserID: any,
+    PostDes: any,
+    Headlines: boolean,
+    Current_Time: any,
+    CategoryID: any,
+    Like: any,
+    Dislike: any,
 
   ): Observable<any> {
     const body = {
@@ -37,5 +37,10 @@ export class PostService {
     console.log(body)
 
     return this.http.post('https://localhost:44347/api/Posts', body);
+  }
+
+  delete(id): Observable<any> {
+
+    return this.http.delete('https://localhost:44347/api/Posts/' + id);
   }
 }

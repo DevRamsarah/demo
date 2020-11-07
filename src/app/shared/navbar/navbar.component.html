@@ -15,18 +15,64 @@
         <a class="nav-link" [routerLink]="['feeds']" [routerLinkActive]="['active']">Feeds</a>
       </li>
 
-      <li class="nav-item ">
+      <li class="nav-item " *ngIf="_role=='Admin'">
         <a class="nav-link" [routerLink]="['type']" [routerLinkActive]="['active']" >Manage Types </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item " *ngIf="_role=='Admin'">
         <a class="nav-link" [routerLink]="['article']" [routerLinkActive]="['active']" >Manage Article </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item " *ngIf="_role=='Admin'">
         <a class="nav-link" [routerLink]="['post']" [routerLinkActive]="['active']" >Manage Post </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item " *ngIf="_role=='Admin'">
         <a class="nav-link" [routerLink]="['user']" [routerLinkActive]="['active']" >Manage Users </a>
       </li>
+
     </ul>
-  </div>
+    <ul class="navbar-nav  mt-2 mt-lg-0">
+      <li  class="nav-item " *ngIf="_log==false">
+    <a class="nav-link" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a>
+    </li>
+    <li  class="nav-item " *ngIf="_role=='Admin' || _role=='User'">
+      <a class="nav-link"  style="width:auto;">{{_name}}</a>
+      </li>
+    <li  class="nav-item " (click)="SignOut()" *ngIf="_role=='Admin' || _role=='User'">
+      <a class="nav-link"  style="width:auto;">Sign Out</a>
+      </li>
+</ul>
+</div>
 </nav>
+
+
+<div id="id01" class="modal">
+  <form class="modal-content animate" [formGroup]="loginForm" ngNativeValidate (ngSubmit)="login()">
+    <div class="container">
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" formControlName="Email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" formControlName="Password" required>
+        
+      <button type="submit">Login</button>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+

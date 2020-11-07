@@ -9,7 +9,7 @@
         </mat-form-field> -->
         <ng-container>
             <button mat-raised-button color="primary" style="  margin-right: 2vh;" data-toggle="modal" data-target="#exampleModal">
-          Add Type of Bullying
+          Add Post
             </button>
         </ng-container>
       </div>
@@ -69,7 +69,7 @@
               {{ row.Dislike }}
             </td>
         </ng-container>
-        <ng-container matColumnDef="edit">
+        <!-- <ng-container matColumnDef="edit">
           <th mat-header-cell *matHeaderCellDef>Edit</th>
           <td mat-cell *matCellDef="let row">
               <div class="button-container">
@@ -80,12 +80,12 @@
                   </button>
               </div>
           </td>
-      </ng-container>
+      </ng-container> -->
       <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef>Delete</th>
           <td mat-cell *matCellDef="let row">
               <div class="button-container">
-                  <button (click)="delete(row.CategoryID)" class="action_buttons"
+                  <button (click)="delete(row.PostID)" class="action_buttons"
                       style="background-color: tomato; color: #fff;" mat-mini-fab>
                       <mat-icon>delete</mat-icon>
                   </button>
@@ -116,25 +116,27 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Type</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
      
-        <form [formGroup]="addCategoryForm" ngNativeValidate (ngSubmit)="addCategory()">
+        <form [formGroup]="addPostForm" ngNativeValidate (ngSubmit)="addPost()">
           <div class="modal-body">
             <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Type Name</label>
-              <input type="text" class="form-control"  formControlName="CategoryName" >
-              <label for="recipient-name" class="col-form-label">Type Description:</label>
-              <input type="text" class="form-control"  formControlName="CategoryDesc"  >
-             
+              <label for="recipient-name" class="col-form-label">Post Description</label>
+              <input type="text" class="form-control"  formControlName="PostDes" >
+              <label for="recipient-name" class="col-form-label">Type:</label>
+              <select class="custom-select" required formControlName="CategoryID">
+                <option value="1" selected>Physical</option>
+                <option value="2">Verbal</option>
+              </select>             
 
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Add Type</button>
+            <button type="submit" class="btn btn-primary">Add Post</button>
         </div>
     </form>
       </div>
@@ -144,21 +146,22 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Type</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
      
-      <form [formGroup]="editCategoryForm" ngNativeValidate (ngSubmit)="editCategory(row)">
+      <form [formGroup]="editPostForm" ngNativeValidate (ngSubmit)="editPost(row)">
         <div class="modal-body">
             <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Type Name</label>
-              <input type="text" class="form-control"  formControlName="CategoryName" value={{row.CategoryName}} >
+              <label for="recipient-name" class="col-form-label">Post Description</label>
+              <input type="text" class="form-control"  formControlName="PostDes" value={{row.PostDes}} >
               <label for="recipient-name" class="col-form-label">Type Description:</label>
-              <input type="text" class="form-control" formControlName="CategoryDesc" value={{row.CategoryDesc}} >
-             
-
+              <select class="custom-select" required formControlName="CategoryID">
+                <option value="1" selected>Physical</option>
+                <option value="2">Verbal</option>
+              </select>
             </div>
         </div>
         <div class="modal-footer">
